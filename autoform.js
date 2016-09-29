@@ -1,55 +1,7 @@
 ﻿
 
 
-$(function () {
-    $('.select2').select2({ placeholder: 'select a number', allowClear: true, minimumResultsForSearch: -1 });
-    $('.icheck').iCheck({
-        checkboxClass: 'icheckbox_square-blue',
-        radioClass: 'iradio_square-blue',
-        increaseArea: '20%' // optional
-    });
-    $('.datetime').datetimepicker({
-        locale: 'zh-cn',
-        format: 'YYYY-MM-DD'
-    });
-    var jsonobj = { UserName: 'Messi', Club: 'lazio', BackNumber: '10', Postion: 'cf,st', Birthday: '2016-03-04' };
 
-    $('#btnok').click(function () {
-        //var autoform = autoFormFn();
-        //autoform('form1', jsonobj);
-
-        autoform.fillForm('form1', jsonobj);
-
-        return false;
-    });
-
-    $('#btnok2').click(function () {
-        //autoform.chuangCheckBoxFun(function (control, value, jsonvalue) {
-        //    $(control).iCheck('check');
-        //});
-        //autoform.chuangRadioFun(function (control, value, jsonvalue) {
-        //    $(control).iCheck('check');
-        //});
-        //autoform.chuangSelectFun(function (control, jsonvalue) {
-        //    $(control).val(jsonvalue).trigger("change");
-        //});
-        autoform.fillForm('form2', jsonobj, {
-            changeCheckBox: function (control, value, jsonvalue) {
-                $(control).iCheck('check');
-            },
-            changeRadio: function (control, value, jsonvalue) {
-                $(control).iCheck('check');
-            },
-            changeSelect: function (control, jsonvalue) {
-                $(control).val(jsonvalue).trigger("change");
-            },
-            changeText: function (control, jsonvalue) {
-                $(control).val('i\'m ' + jsonvalue);
-            }
-        });
-
-    });
-});
 
 var autoFormFn = function () {
 
