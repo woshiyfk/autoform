@@ -18,7 +18,14 @@ var autoFormFn = function () {
             }
         }
     };
-
+	
+	this.clearForm = function(formId,otherfun){
+		if(otherfun) otherfun(formId);
+		document.getElementById(formId).reset();
+		
+		return false;
+	}
+	
     this.chuangRadioFun = function (fun) {
         defaultSetRadioValue = fun;
     };

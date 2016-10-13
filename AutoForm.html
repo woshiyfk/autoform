@@ -93,6 +93,9 @@
             <div class="form-group">
                 <div class="col-sm-offset-2 col-sm-10">
                     <input type="button" role="button" class="btn btn-info" id="btnok" value="确定"/>
+                    <button role="button" class="btn btn-danger clearform" data-form="form1">清空</button>
+                    <input type="reset" value="清空2" class="btn btn-success" />
+                    <button role="button" class="btn btn-deault lookparam" data-form="form1">查看</button>
                 </div>
             </div>
             
@@ -169,6 +172,9 @@
             <div class="form-group">
                 <div class="col-sm-offset-2 col-sm-10">
                     <input type="button" role="button" class="btn btn-info" id="btnok2" value="确定" />
+                    <button role="button" class="btn btn-danger clearform" data-form="form2">清空</button>
+                    <input type="reset" value="清空2" class="btn btn-success" />
+                    <button role="button" class="btn btn-deault lookparam" data-form="form2">查看</button>
                 </div>
             </div>
 
@@ -224,6 +230,25 @@
             }
         });
 
+    });
+    
+    $('.clearform').click(function(){
+    	var id = $(this).attr('data-form');
+    	$('#' + id +' .icheck').iCheck('uncheck');
+    	autoform.clearForm(id,function(formid){
+    		$('#' + formid +' .icheck').iCheck('uncheck');
+    		$('#' + formid +' .select2').val(null).trigger("change");
+    	});
+    	
+    	//alert($('#'+id).serialize());
+    	
+    	return false;
+    });
+    
+    $('.lookparam').click(function(){
+    	var id = $(this).attr('data-form');
+    	alert($('#'+id).serialize());
+    	return false;
     });
 });
 //	if(undefined){
