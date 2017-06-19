@@ -180,6 +180,88 @@
 
         </form>
     </div>
+
+    <div class="container well">
+        <h2 class="text-center">ignore使用</h2>
+        <form id="form3" class="form-horizontal" role="form">
+            <div class="form-group">
+                <label for="inputEmail3" class="col-sm-2 control-label">UserName</label>
+                <div class="col-sm-10">
+                    <input class="form-control" name="UserName" placeholder="UserName">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Club</label>
+                <div class="col-sm-10">
+                    <label class="col-sm-1">River</label>
+                    <div class="col-sm-1">
+                        <input type="radio" name="Club" value="river" class="icheck col-sm-1" />
+                    </div>
+                    <label class="col-sm-2">Barcelona</label>
+                    <div class="col-sm-1">
+                        <input type="radio" name="Club" value="barcelona" class="icheck col-sm-1" />
+                    </div>
+                    <label class="col-sm-1">Lazio</label>
+                    <div class="col-sm-1">
+                        <input type="radio" name="Club" value="lazio" class="icheck col-sm-1" />
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">BackNumber</label>
+                <div class="col-sm-10">
+                    <select class="select2 form-control" name="BackNumber">
+                        <option value="">please select</option>
+                        <option value="6">Number6</option>
+                        <option value="7">Number7</option>
+                        <option value="8">Number8</option>
+                        <option value="9">Number9</option>
+                        <option value="10">Number10</option>
+                        <option value="11">Number11</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <div class="form-group">
+                        <label class="col-sm-1">ST</label>
+                        <div class="col-sm-1">
+                            <input type="checkbox" name="Postion" value="st" class="icheck col-sm-1" />
+                        </div>
+                        <label class="col-sm-1">CF</label>
+                        <div class="col-sm-1">
+                            <input type="checkbox" name="Postion" value="cf" class="icheck col-sm-1" />
+                        </div>
+                        <label class="col-sm-1">AMC</label>
+                        <div class="col-sm-1">
+                            <input type="checkbox" name="Postion" value="amc" class="icheck col-sm-1" />
+                        </div>
+                        <label class="col-sm-1">MC</label>
+                        <div class="col-sm-1">
+                            <input type="checkbox" name="Postion" value="mc" class="icheck col-sm-1" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">BirthDay</label>
+                <div class="col-sm-10">
+                    <input class="form-control datetime" name="Birthday">
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <input type="button" role="button" class="btn btn-info" id="btnok3" value="数组形式" />
+                    <input type="button" role="button" class="btn btn-info" id="btnok4" value="字符串形式" />
+                    <button role="button" class="btn btn-danger clearform" data-form="form3">清空</button>
+                    <input type="reset" value="清空2" class="btn btn-success" />
+                    <button role="button" class="btn btn-deault lookparam" data-form="form3">查看</button>
+                </div>
+            </div>
+
+        </form>
+    </div>
+
 </body>
 </html>
 <script>
@@ -230,8 +312,42 @@
             }
         });
 
+
     });
-    
+    $('#btnok3').click(function(){ 
+    	autoform.fillForm('form3', jsonobj, {
+            changeCheckBox: function (control, value, jsonvalue) {
+                $(control).iCheck('check');
+            },
+            changeRadio: function (control, value, jsonvalue) {
+                $(control).iCheck('check');
+            },
+            changeSelect: function (control, jsonvalue) {
+                $(control).val(jsonvalue).trigger("change");
+            },
+            changeText: function (control, jsonvalue) {
+                $(control).val('i\'m ' + jsonvalue);
+            },
+            ignore:['Club','Postion']
+        });
+    });
+    $('#btnok4').click(function(){ 
+    	autoform.fillForm('form3', jsonobj, {
+            changeCheckBox: function (control, value, jsonvalue) {
+                $(control).iCheck('check');
+            },
+            changeRadio: function (control, value, jsonvalue) {
+                $(control).iCheck('check');
+            },
+            changeSelect: function (control, jsonvalue) {
+                $(control).val(jsonvalue).trigger("change");
+            },
+            changeText: function (control, jsonvalue) {
+                $(control).val('i\'m ' + jsonvalue);
+            },
+            ignore:'Club,Postion,UserName'
+        });
+    });
     $('.clearform').click(function(){
     	var id = $(this).attr('data-form');
     	$('#' + id +' .icheck').iCheck('uncheck');

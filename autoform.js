@@ -7,10 +7,22 @@ var autoFormFn = function () {
 
     var separateSign = ',';
     var autoFormOptions;
+    var ignoreKeys;
     this.fillForm = function (formId, json, options) {
         var $form = $('#' + formId);
         autoFormOptions = options;
+        if (autoFormOptions && autoFormOptions.ignore) {
+        	if(typeof autoFormOptions.ignore === 'string'){ 
+        		ignoreKeys = autoFormOptions.ignore.split(",");
+        	}
+    		else if(typeof autoFormOptions.ignore === 'object'){ 
+    			ignoreKeys = autoFormOptions.ignore;
+    		}
+    		else console.log('ignore type is :' + typeof autoFormOptions.ignore);
+    	};
         for (var key in json) {
+        	if ( ignoreKeys && $.inArray(key,ignoreKeys)>-1) continue;
+
             var $tagobjs = $("[name=" + key + "]", $form);
             if ($tagobjs && $tagobjs.length > 0) {
                 var jsonvalue = json[key];
